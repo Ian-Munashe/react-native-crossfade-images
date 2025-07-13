@@ -1,24 +1,24 @@
 # react-native-crossfade-images
 
-asda
+A lightweight and performant React Native library designed to smoothly transition between images using crossfade effect. Simply pass a new image source prop, and watch your images gracefully blend from one to the next, enhancing the visual appeal of your application.
 
 ## Installation
 
 ```sh
+bun add react-native-crossfade-images
 npm install react-native-crossfade-images
+yarn install react-native-crossfade-images
 ```
 
 ## Usage
 
-
 ```js
-import { multiply } from 'react-native-crossfade-images';
+import { CrossfadeImage } from "react-native-crossfade-images";
 
-// ...
-
-const result = await multiply(3, 7);
+export default function App() {
+  return <CrossfadeImage src={"http://example.com/image.jpg"} />;
+}
 ```
-
 
 ## Contributing
 

@@ -123,8 +123,10 @@
   },
   "prettier": {
     "quoteProps": "consistent",
-    "singleQuote": true,
+    "singleQuote": false,
+    "printWidth": 120,
     "tabWidth": 2,
+    "semi": true,
     "trailingComma": "es5",
     "useTabs": false
   },
