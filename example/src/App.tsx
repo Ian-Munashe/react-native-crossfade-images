@@ -15,7 +15,7 @@ export default function App() {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setIndex(index >= images.length - 1 ? 0 : index + 1);
-    }, 2000);
+    }, 10000);
     return () => clearTimeout(timer);
   }, [index]);
 
