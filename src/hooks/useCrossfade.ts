@@ -44,14 +44,11 @@ export const useCrossfade = (duration: number, easing: EasingFunction, src?: str
   const [currentImageSrc, setCurrentImageSrc] = React.useState<ImageSourcePropType>();
 
   React.useEffect(() => {
-    if (src) prevSource.current = source;
-  });
-
-  React.useLayoutEffect(() => {
-    if (!src) return;
-    if (prevSource && !isEqual(source, prevSource.current)) {
-      if (!nextSource.current) setCurrentImageSrc(source);
-      nextSource.current = source;
+    if (src) {
+      if (prevSource && !isEqual(source, prevSource.current)) {
+        if (!nextSource.current) setCurrentImageSrc(source);
+      }
+      prevSource.current = source;
     }
   }, [src, source, prevSource]);
 
@@ -75,7 +72,12 @@ export const useCrossfade = (duration: number, easing: EasingFunction, src?: str
   return { handleLoad, handleUpdate, previousImageOpacity, currentImageOpacity, prevImageSrc, currentImageSrc };
 };
 
-const isEqual = (one: ImageSourcePropType, two?: ImageSourcePropType): boolean => {
+const isEqual = (one?: ImageSourcePropType, two?: ImageSourcePropType): boolean => {
+  if (!one && !two) return true;
   if (!one || !two) return false;
-  return Image.resolveAssetSource(one).uri === Image.resolveAssetSource(two).uri;
+  try {
+    return Image.resolveAssetSource(one).uri === Image.resolveAssetSource(two).uri;
+  } catch (error) {
+    return one === two;
+  }
 };

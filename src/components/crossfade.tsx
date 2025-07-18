@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Animated, Easing } from "react-native";
+
 import type { CrossfadeImageProps } from "../types";
 import { useCrossfade } from "../hooks/useCrossfade";
 
@@ -20,6 +21,8 @@ import { useCrossfade } from "../hooks/useCrossfade";
 export const CrossfadeImage: React.FC<CrossfadeImageProps> = ({ duration = 500, easing = Easing.ease, ...props }) => {
   const { handleLoad, handleUpdate, previousImageOpacity, currentImageOpacity, prevImageSrc, currentImageSrc } =
     useCrossfade(duration, easing, props.src);
+
+  console.log("Prev: ", prevImageSrc);
 
   return (
     <View style={[styles.root, props.style]}>
